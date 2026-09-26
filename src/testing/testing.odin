@@ -171,7 +171,9 @@ teardown :: proc(src: ^Source) {
 	delete(src.config.collections)
 	delete(src.collections)
 	delete(src.document.package_name)
-	delete(src.document.fullpath)
+	when ODIN_OS == .Windows {
+		delete(src.document.fullpath)
+	}
 
 	virtual.arena_destroy(src.document.allocator)
 	free(src.document.allocator)

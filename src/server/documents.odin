@@ -347,6 +347,9 @@ document_close :: proc(uri_string: string) -> common.Error {
 
 	delete(document.text)
 	delete(document.package_name)
+	when ODIN_OS == .Windows {
+		delete(document.fullpath)
+	}
 
 	document.used_text = 0
 
