@@ -171,6 +171,7 @@ teardown :: proc(src: ^Source) {
 	delete(src.config.collections)
 	delete(src.collections)
 	delete(src.document.package_name)
+	delete(src.document.fullpath)
 
 	virtual.arena_destroy(src.document.allocator)
 	free(src.document.allocator)
@@ -180,8 +181,6 @@ teardown :: proc(src: ^Source) {
 
 	free(src.document)
 	src.document = nil
-
-	free_all(context.temp_allocator)
 }
 
 source_remove_cursor :: proc(src: ^Source) -> (cursor: common.Position) {
