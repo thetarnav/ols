@@ -172,6 +172,7 @@ teardown :: proc(src: ^Source) {
 	delete(src.collections)
 	delete(src.document.package_name)
 	when ODIN_OS == .Windows {
+		// Only on Windows fullpath is allocated (filepath.replace_separators); elsewhere it's an alias of uri.path.
 		delete(src.document.fullpath)
 	}
 
