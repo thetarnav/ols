@@ -180,6 +180,8 @@ teardown :: proc(src: ^Source) {
 
 	free(src.document)
 	src.document = nil
+
+	free_all(context.temp_allocator)
 }
 
 source_remove_cursor :: proc(src: ^Source) -> (cursor: common.Position) {
